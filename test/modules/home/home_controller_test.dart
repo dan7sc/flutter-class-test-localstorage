@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:localstorage/modules/home/home_controller.dart';
-import 'package:localstorage/shared/models/count_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -8,6 +7,8 @@ void main() {
     test('Should increment', () async {
       // Arrange - initialization
       late HomeController controller = HomeController(onUpdate: () {});
+
+      SharedPreferences.setMockInitialValues({'count': ''});
 
       // Act - action
       controller.increment();
@@ -19,6 +20,8 @@ void main() {
     test('Should increment multiple times', () async {
       // Arrange - initialization
       late HomeController controller = HomeController(onUpdate: () {});
+
+      SharedPreferences.setMockInitialValues({'count': ''});
 
       // Act - action
       controller.increment();
@@ -33,9 +36,8 @@ void main() {
   test('Should stop loading after getCount', () async {
     // Arrange - initialization
     late HomeController controller = HomeController(onUpdate: () {});
-    final countModel = CountModel(value: 10);
 
-    SharedPreferences.setMockInitialValues({"count": countModel.toJson()});
+    SharedPreferences.setMockInitialValues({'count': '{"value": 10}'});
 
     // Act - action
     await controller.getCount();
