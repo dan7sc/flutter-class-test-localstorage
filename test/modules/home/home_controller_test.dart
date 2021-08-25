@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:localstorage/modules/home/home_controller.dart';
+import 'package:localstorage/shared/models/count_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   group('HomeController increment', () {
@@ -31,6 +33,9 @@ void main() {
   test('Should stop loading after getCount ', () async {
     // Arrange - initialization
     late HomeController controller = HomeController(onUpdate: () {});
+    final countModel = CountModel(value: 10);
+
+    SharedPreferences.setMockInitialValues({"count": countModel.toJson()});
 
     // Act - action
     await controller.getCount();
