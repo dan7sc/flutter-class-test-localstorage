@@ -30,7 +30,7 @@ void main() {
     });
   });
 
-  test('Should stop loading after getCount ', () async {
+  test('Should stop loading after getCount', () async {
     // Arrange - initialization
     late HomeController controller = HomeController(onUpdate: () {});
     final countModel = CountModel(value: 10);
@@ -41,6 +41,6 @@ void main() {
     await controller.getCount();
 
     // Assert - validation
-    expect(controller.isLoading, true);
+    expect(controller.isLoading, false);
   });
 }
