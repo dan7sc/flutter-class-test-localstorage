@@ -75,6 +75,6 @@ void main() {
     final count = instance.getString("count");
 
     // Assert - validation
-    expect(count, '{"value":4}');
+    expect(count, '{"value":3}');
   });
 }
