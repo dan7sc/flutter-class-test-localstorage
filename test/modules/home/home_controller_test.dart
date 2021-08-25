@@ -47,34 +47,36 @@ void main() {
     expect(controller.isLoading, false);
   });
 
-  test('Should get count from local storage', () async {
-    // Arrange - initialization
-    late HomeController controller = HomeController(onUpdate: () {});
+  group('HomeController local storage', () {
+    test('Should get count from local storage', () async {
+      // Arrange - initialization
+      late HomeController controller = HomeController(onUpdate: () {});
 
-    SharedPreferences.setMockInitialValues({'count': '{"value": 10}'});
+      SharedPreferences.setMockInitialValues({'count': '{"value": 10}'});
 
-    // Act - action
-    await controller.getCount();
+      // Act - action
+      await controller.getCount();
 
-    // Assert - validation
-    expect(controller.countModel.value, 10);
-  });
+      // Assert - validation
+      expect(controller.countModel.value, 10);
+    });
 
-  test('Should save count in local storage', () async {
-    // Arrange - initialization
-    late HomeController controller = HomeController(onUpdate: () {});
+    test('Should save count in local storage', () async {
+      // Arrange - initialization
+      late HomeController controller = HomeController(onUpdate: () {});
 
-    SharedPreferences.setMockInitialValues({'count': ''});
+      SharedPreferences.setMockInitialValues({'count': ''});
 
-    final countModel = CountModel(value: 3);
-    controller.countModel = countModel;
+      final countModel = CountModel(value: 3);
+      controller.countModel = countModel;
 
-    // Act - action
-    await controller.saveCount();
-    final instance = await SharedPreferences.getInstance();
-    final count = instance.getString("count");
+      // Act - action
+      await controller.saveCount();
+      final instance = await SharedPreferences.getInstance();
+      final count = instance.getString("count");
 
-    // Assert - validation
-    expect(count, '{"value":3}');
+      // Assert - validation
+      expect(count, '{"value":3}');
+    });
   });
 }
