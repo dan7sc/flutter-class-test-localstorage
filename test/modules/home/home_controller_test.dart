@@ -56,6 +56,6 @@ void main() {
     await controller.getCount();
 
     // Assert - validation
-    expect(controller.countModel.value, 11);
+    expect(controller.countModel.value, 10);
   });
 }
