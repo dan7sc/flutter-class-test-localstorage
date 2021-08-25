@@ -10,6 +10,6 @@ void main() {
     controller.increment();
 
     // Assert - validation
-    expect(controller.countModel.value, 2);
+    expect(controller.countModel.value, 1);
   });
 }
