@@ -27,4 +27,15 @@ void main() {
       expect(controller.countModel.value, 3);
     });
   });
+
+  test('Should stop loading after getCount ', () async {
+    // Arrange - initialization
+    late HomeController controller = HomeController(onUpdate: () {});
+
+    // Act - action
+    await controller.getCount();
+
+    // Assert - validation
+    expect(controller.isLoading, true);
+  });
 }
