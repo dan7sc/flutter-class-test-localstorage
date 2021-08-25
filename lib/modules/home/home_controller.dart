@@ -32,13 +32,14 @@ class HomeController {
     isLoading = true;
     onUpdate();
     await Future.delayed(Duration(seconds: 2));
+
     final instance = await SharedPreferences.getInstance();
     final response = instance.getString("count");
     if (response != null) {
       final count = CountModel.fromJson(response);
       countModel = count;
-      isLoading = false;
-      onUpdate();
     }
+    isLoading = false;
+    onUpdate();
   }
 }
