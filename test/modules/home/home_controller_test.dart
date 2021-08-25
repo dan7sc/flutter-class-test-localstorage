@@ -45,4 +45,17 @@ void main() {
     // Assert - validation
     expect(controller.isLoading, false);
   });
+
+  test('Should get count from local storage', () async {
+    // Arrange - initialization
+    late HomeController controller = HomeController(onUpdate: () {});
+
+    SharedPreferences.setMockInitialValues({'count': '{"value": 10}'});
+
+    // Act - action
+    await controller.getCount();
+
+    // Assert - validation
+    expect(controller.countModel.value, 11);
+  });
 }
